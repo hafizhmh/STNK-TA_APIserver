@@ -55,22 +55,22 @@ def genTransformationMatrix(width, height, x=0.1, y=0.1):
     TImageMatrix = json.dumps(TImageMatrix)
     with open('out.txt', 'w') as f:
         f.write(TImageMatrix)
-    return TImageMatrix
+    # return TImageMatrix
 
 if __name__ == "__main__":
     try:
         if len(sys.argv) == 3:
-            print(genTransformationMatrix(
+            genTransformationMatrix(
                 width = int(sys.argv[1]),
                 height = int(sys.argv[2])
-                ))
+                )
         else :
             # will raise an exception if argument length is neither 3 nor 5
-            print(genTransformationMatrix(
+            genTransformationMatrix(
                 width = int(sys.argv[1]),
                 height = int(sys.argv[2]),
                 x = float(sys.argv[3]),
                 y = float(sys.argv[4])
-                ))
+                )
     except Exception as e:
         print("Error: ", e)

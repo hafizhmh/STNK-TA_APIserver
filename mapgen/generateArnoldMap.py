@@ -2,6 +2,7 @@ from PIL import Image
 import numpy as np
 import sys
 import os
+import json
 cwd = os.getcwd()
 
 def multiplyMatrix(A,B,res):
@@ -59,16 +60,18 @@ def driverProgram(width,height,numberOfIterations,modN):
                 mapList.append(map)
             except:
                 mapList = [map]
-    #print(mapList)
+    a = str(mapList)
+    with open('out.txt', 'w') as f:
+        f.write(a)
     return mapList
 
 if __name__ == "__main__":
     try:
-        print(driverProgram(
+        driverProgram(
             width = int(sys.argv[1]),
             height = int(sys.argv[1]),
             numberOfIterations = int(sys.argv[2]),
             modN = int(sys.argv[1])
-        ))
+        )
     except Exception as e:
         print("Error: ", e)

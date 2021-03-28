@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 
@@ -116,14 +117,14 @@ router.get('/map/', function (req, res, next) {
 
   python.stdout.on('data', function (data) {
     console.log('Pipe data from python script ...');
-    dataToSend = data.toString();
+    // dataToSend = data.toString();
   });
 
   python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`);
     // send data to browser
-    res.send(dataToSend)
+    a = fs.readFileSync("./out.txt", "utf8")
+    res.send(a)
   });
 });
-
 module.exports = router;
