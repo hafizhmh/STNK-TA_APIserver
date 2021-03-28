@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const connectionString = "mongodb+srv://ImageEncryptor:apaaja123@sambaracluster.gd5je.mongodb.net/PerpanjanganSTNK?retryWrites=true&w=majority";
+
 // set up express app
 const app = express();
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
 
+// Please put MongoDB connection string on ./connectionString.txt
+const connectionString = fs.readFileSync('./connectionString.txt', 'utf8')
 // get local ip
 var os = require('os');
 var interfaces = os.networkInterfaces();
