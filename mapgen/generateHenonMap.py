@@ -1,5 +1,6 @@
 from PIL import Image
 import sys
+import json
 def dec(bitSequence):
     decimal = 0
     for bit in bitSequence:
@@ -51,6 +52,9 @@ def genTransformationMatrix(width, height, x=0.1, y=0.1):
             except:
                 TImageMatrix = [byteArray]
             byteArray = []
+    TImageMatrix = json.dumps(TImageMatrix)
+    with open('out.txt', 'w') as f:
+        f.write(TImageMatrix)
     return TImageMatrix
 
 if __name__ == "__main__":
