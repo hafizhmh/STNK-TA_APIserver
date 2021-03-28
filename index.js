@@ -7,6 +7,19 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 
+// get local ip
+var os = require('os');
+var interfaces = os.networkInterfaces();
+var addresses = [];
+for (var k in interfaces) {
+    for (var k2 in interfaces[k]) {
+        var address = interfaces[k][k2];
+        if (address.family === 'IPv4' && !address.internal) {
+            addresses.push(address.address);
+        }
+    }
+}
+
 // HTTPS?
 const isHTTPS = false
 
@@ -80,3 +93,5 @@ if (isHTTPS) {
         });
 
 }
+console.log("Local IP:")
+console.log(addresses);
