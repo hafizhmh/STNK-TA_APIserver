@@ -109,10 +109,10 @@ router.get('/map/', function (req, res, next) {
   // res.send("OK")
   if (req.query.q == "H") {
     console.log("Henon")
-    var python = spawn('python', ['./mapgen/generateHenonMap.py', req.query.width, req.query.height]);
+    var python = spawn('python3', ['./mapgen/generateHenonMap.py', req.query.width, req.query.height]);
   } else if (req.query.q == "A") {
     console.log("Arnold")
-    var python = spawn('python', ['./mapgen/generateArnoldMap.py', req.query.width, req.query.iteration]);
+    var python = spawn('python3', ['./mapgen/generateArnoldMap.py', req.query.width, req.query.iteration]);
   }
 
   python.stdout.on('data', function (data) {
