@@ -23,22 +23,10 @@ for (var k in interfaces) {
 }
 
 // HTTPS?
-const isHTTPS = false
-
-// Certificate
-if (isHTTPS) {
-        const privateKey = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/privkey.pem', 'utf8');
-        const certificate = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/cert.pem', 'utf8');
-        const ca = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/chain.pem', 'utf8');
-        const credentials = {
-                key: privateKey,
-                cert: certificate,
-                ca: ca
-        };
-}
+const isHTTPS = true
 
 // connect to mongodb
-mongoose.connect(connectionString);
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 
 //app.use(function(req, res, next) {
@@ -77,23 +65,34 @@ app.use(function(err, req, res, next){
   res.status(422).send({error: err.message});
 });
 
+// Start server
 if (isHTTPS) {
+	// Certificate for HTTPS
+	const privateKey = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/privkey.pem', 'utf8');
+	const certificate = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/cert.pem', 'utf8');
+	const ca = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/chain.pem', 'utf8');
+	const credentials = {
+		                key: privateKey,
+		                cert: certificate,
+		                ca: ca
+		        };
         const httpServer = http.createServer(app);
         const httpsServer = https.createServer(credentials, app);
         
+	// listen for request: https and http
         httpServer.listen(80, () => {
                 console.log('HTTP Server running on port 80');
         });
         
         httpsServer.listen(443, () => {
-                console.log('HTTPS Server running on port 443');
+                console.log('HTTPS Server running on port 443\n');
         });
 } else {
         // listen for requests
         app.listen(process.env.port || 4000, function(){
-                console.log('now listening for requests');
+                console.log('HTTP server running on port 4000\n');
         });
 
 }
-console.log("Local IP:")
+console.log("\nLocal IP:")
 console.log(addresses);
