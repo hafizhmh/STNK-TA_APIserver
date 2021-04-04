@@ -16,6 +16,7 @@ router.get('/test', function (req, res, next) {
 
 // get a list of verifydatas from the db
 router.get('/verify', function (req, res, next) {
+  console.log('get /verify', req.query)
   VerifyData.find({
     nik: req.query.nik,
     nrkb: req.query.nrkb
@@ -52,6 +53,7 @@ router.delete('/verify/:id', function (req, res, next) {
 
 // get a list of verifydatas from the db
 router.get('/perpanjangan', function (req, res, next) {
+  console.log('get /perpanjangan', req.query)
   Perpanjangan.find({
     nrkb: req.query.nrkb
   }).then(function (perpanjangan) {
@@ -104,8 +106,7 @@ router.delete('/perpanjangan/:id', function (req, res, next) {
 
 router.get('/map/', function (req, res, next) {
   var dataToSend;
-  console.log(req.query)
-  console.log(req.query.q)
+  console.log('get /map', req.query)
   // res.send("OK")
   if (req.query.q == "H") {
     console.log("Henon")
