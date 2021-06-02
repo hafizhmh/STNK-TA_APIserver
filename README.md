@@ -28,16 +28,12 @@ const privateKey = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/privk
 const certificate = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/cert.pem', 'utf8');
 const ca = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/chain.pem', 'utf8');
 ```
-7. Run the server. Linux need root access to open well-known ports.
-```
-sudo node index
-```
-Simply use `node index` on Windows.<br><br>
+7. Run the server. Linux need root access to open well-known ports.```sudo node index```Simply use `node index` on Windows.<br><br>
 This should showed up on your terminal.<br>
 ![Run](/README/run.png)
 
 8. Test the server by accessing `/api/test`. For example, if you are using it on localhost, try to open `localhost/api/test` on your browser. You could also use the local ip, showed previously, to access it from your local network.<br><br>
-This should showed up:
+This should showed up:<br>
 ![Access](/README/api_test.png)
 
 ## Documentation
