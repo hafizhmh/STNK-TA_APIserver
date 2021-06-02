@@ -9,6 +9,7 @@ const https = require('https');
 
 // Please put MongoDB connection string on ./connectionString.txt
 const connectionString = fs.readFileSync('./connectionString.txt', 'utf8')
+
 // get local ip
 var os = require('os');
 var interfaces = os.networkInterfaces();
@@ -23,7 +24,7 @@ for (var k in interfaces) {
 }
 
 // HTTPS?
-const isHTTPS = true
+const isHTTPS = false
 
 // connect to mongodb
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true});
@@ -78,19 +79,19 @@ if (isHTTPS) {
 		        };
         const httpServer = http.createServer(app);
         const httpsServer = https.createServer(credentials, app);
-        
+
 	// listen for request: https and http
         httpServer.listen(80, () => {
                 console.log('HTTP Server running on port 80');
         });
-        
+
         httpsServer.listen(443, () => {
                 console.log('HTTPS Server running on port 443\n');
         });
 } else {
         // listen for requests
-        app.listen(process.env.port || 4000, function(){
-                console.log('HTTP server running on port 4000\n');
+        app.listen(process.env.port || 80, function(){
+                console.log('HTTP server running on port 80\n');
         });
 
 }
