@@ -17,7 +17,8 @@ npm install
 ```
 4. Install all Python dependencies by using pip.
 ```
-pip3 isntall -r ./requirement.txt
+python3 -m pip install --upgrade pip
+python3 -m pip install -r ./requirement.txt
 ```
 5. Edit the `index.js` file. Look for `const isHTTPS` in line 26.
 * Set the value to `false` if you want the server to **only** listen to port 80 (HTTP), or
