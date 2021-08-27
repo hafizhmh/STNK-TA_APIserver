@@ -1,6 +1,6 @@
 # STNK-TA_APIserver
 
-This API server provides drivers to MongoDB Collections and provides Henon's Map and Arnold's Map generation for image encryption.
+This program is part of Final Project Capstone Design mandated as graduation requirement of Bachelor of Engineering program at Institut Teknologi Bandung. The whole project consists of this repository as the backend and a Flutter aplication as the frontend. This API server provides drivers to MongoDB Collections and provides Henon's Map and Arnold's Map generation for image encryption that are used to safely upload and store image from the Android application.
 
 ## Path:
 * `/api/verify`
@@ -10,7 +10,7 @@ This API server provides drivers to MongoDB Collections and provides Henon's Map
 ## Installation
 1. Install Node.js and Python 3.9.
 2. Make sure Python 3.9 can be called by using `python3` alias.
-3. Make a `connectionString.txt` file on root. Put your MongoDB connection string inside it.
+3. Make a `connectionString.txt` file on project's root folder. Put your MongoDB connection string inside it.
 4. Install all Node.js dependencies by using npm.
 ```
 npm install
@@ -28,11 +28,11 @@ const privateKey = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/privk
 const certificate = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/cert.pem', 'utf8');
 const ca = fs.readFileSync('/etc/letsencrypt/live/stnk-api-ta.tech/chain.pem', 'utf8');
 ```
-7. Run the server. Linux need root access to open well-known ports.```sudo node index```Simply use `node index` on Windows.<br><br>
+7. Run the server. Linux need root access to open well-known ports.<br>```sudo node index```<br>Simply use `node index` on Windows.<br><br>
 This should showed up on your terminal.<br>
 ![Run](/README/run.png)
 
-8. Test the server by accessing `/api/test`. For example, if you are using it on localhost, try to open `localhost/api/test` on your browser. You could also use the local ip, showed previously, to access it from your local network.<br><br>
+8. Test the server by accessing `/api/test`. For example, if you are using it on localhost, try to open `localhost/api/test` on your browser. You could also use the local ip, shown previously, to access it from your local network.<br><br>
 This should showed up:<br>
 ![Access](/README/api_test.png)
 
